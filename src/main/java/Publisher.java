@@ -1,46 +1,51 @@
 import javax.jms.*;
-
+import java.util.Date;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Queue;
+
 public class Publisher {
 
     private static final Logger LOGGER =
             LoggerFactory.getLogger(Publisher.class);
-    private String clientID;
+
+    private String clientId;
     private Connection connection;
     private Session session;
     private MessageProducer messageProducer;
 
-    public void create (String clientID, String topicName) throws JMSException {
-        this.clientID = clientID;
-        //подключение к activemq
-       ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
+    public void create(String clientId, String topicName)
+            throws JMSException {
+        this.clientId = clientId;
 
-        //создание подключения
+
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
+
+
         connection = connectionFactory.createConnection();
-        connection.setClientID(clientID);
+        connection.setClientID(clientId);
 
-        //создание сессии
-        session = connection.createSession(false ,Session.AUTO_ACKNOWLEDGE);
+        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         Topic topic = session.createTopic(topicName);
 
         messageProducer = session.createProducer(topic);
-        System.out.println();
     }
 
     public void closeConnection() throws JMSException {
         connection.close();
     }
 
-    public void sendName(String firstName,String lastname) throws JMSException {
-        String text = firstName +" "+lastname;
+    public void sendName(String firstName, String lastName) throws JMSException {
+        String text = firstName + " " + lastName;
 
         TextMessage textMessage = session.createTextMessage(text);
+
         messageProducer.send(textMessage);
-        LOGGER.debug(clientID+ ":sent message with text = '{}'",text);
+
+        LOGGER.debug(clientId + ": sent message with text='{}'", text);
     }
 }

@@ -23,11 +23,6 @@ public class SubscriberTest {
 
 
     }
-    @AfterClass
-    public static void tearDownAfterClass() throws Exception {
-        publisher1.closeConnection();
-        subscriber1.closeConnection();
-    }
 
     /**
      * отправка и прием сообщения.
