@@ -17,6 +17,12 @@ public class Publisher {
     private Session session;
     private MessageProducer messageProducer;
 
+    /**
+     *
+     * @param clientId - идентификатор клиента
+     * @param topicName - название темы ссобщения
+     * @throws JMSException
+     */
     public void create(String clientId, String topicName)
             throws JMSException {
         this.clientId = clientId;
@@ -39,6 +45,12 @@ public class Publisher {
         connection.close();
     }
 
+    /**
+     * метод приветсвия пользователя
+     * @param firstName - имя публициста
+     * @param lastName - фимилия публициста
+     * @throws JMSException
+     */
     public void sendName(String firstName, String lastName) throws JMSException {
         String text = firstName + " " + lastName;
 

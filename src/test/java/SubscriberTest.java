@@ -27,8 +27,8 @@ public class SubscriberTest {
     /**
      * отправка и прием сообщения.
      */
-    /**@Test
-   /** public void testGetGreeting() {
+    @Test
+    public void testGetGreeting() {
         try {
             publisher1.sendName("Peregrin", "Took");
 
@@ -42,10 +42,9 @@ public class SubscriberTest {
             fail("a JMS Exception occurred");
         }
     }
-*/
     /**
      * два подписчика видят сообщения одной темы
-
+    */
     @Test
     public void testMultipleComsumer(){
         try {
@@ -60,11 +59,11 @@ public class SubscriberTest {
         } catch (JMSException e) {
             e.printStackTrace();
         }
-    }   */
+    }
     /**отправляется сообщениее,подключается второй польователь,отправляется еще сообщение
      * результат: первый юзер видит 2 сообщ
      *            второй юзер видит 1 сообщ
-
+    */
     @Test
     public void testNonDurableSubc(){
         try {
@@ -74,12 +73,14 @@ public class SubscriberTest {
             publisher1.sendName("steven","king");
 
             String greeting1 = subscriber1.getGreeting(1000);
-            assertEquals("Hello harry potter!",greeting1);
+            assertEquals("Hello Harry Potter!",greeting1);
+
             String greeting2 = subscriber1.getGreeting(1000);
             assertEquals("Hello steven king!",greeting2);
 
             String greeting3 = subscriber2.getGreeting(1000);
-            assertEquals("Hello harry potter",greeting3);
+            assertEquals("Hello steven king!",greeting3);
+
             String greeting4 = subscriber2.getGreeting(1000);
             assertEquals("no greeting",greeting4);
 
@@ -87,5 +88,5 @@ public class SubscriberTest {
             e.printStackTrace();
         }
     }
-    */
+
 }

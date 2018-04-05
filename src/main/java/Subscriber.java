@@ -16,6 +16,12 @@ public class Subscriber {
     private Connection connection;
     private MessageConsumer messageConsumer;
 
+    /**
+     *
+     * @param clientId - идентификатор подписчика
+     * @param topicName - название темы которую слушает подписчик
+     * @throws JMSException
+     */
     public void create(String clientId, String topicName) throws JMSException {
         this.clientId = clientId;
 
@@ -37,6 +43,12 @@ public class Subscriber {
         connection.close();
     }
 
+    /**
+     *
+     * @param timeout - время ожидания сообщения от публициста
+     * @return - приветсвие публициста
+     * @throws JMSException
+     */
     public String getGreeting(int timeout) throws JMSException {
 
         String greeting = NO_GREETING;
