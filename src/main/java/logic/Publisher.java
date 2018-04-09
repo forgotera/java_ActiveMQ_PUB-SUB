@@ -1,11 +1,11 @@
+package logic;
+
 import javax.jms.*;
-import java.util.Date;
+
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Queue;
 
 public class Publisher {
 

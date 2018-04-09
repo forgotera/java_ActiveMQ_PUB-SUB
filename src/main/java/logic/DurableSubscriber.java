@@ -1,3 +1,5 @@
+package logic;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
@@ -11,8 +13,12 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
+/**
+ * Обьект для длительной подписки
+ * все отправленные сообщения
+ * дойдут до юзера при его подключении
+ */
+//@Deprecated
 public class DurableSubscriber {
     private static  final Logger LOGGER = LoggerFactory.getLogger(DurableSubscriber.class);
     private static final String NO_GREETING = "no greeting";
@@ -59,6 +65,7 @@ public class DurableSubscriber {
             String text = textMessage.getText();
             LOGGER.debug(clientID+ ": received message with text={}'",text);
             greeting = "Hello " + text+"!";
+            //System.out.println(greeting);
         }else {
             LOGGER.debug(clientID + ":no messaage received");
         }

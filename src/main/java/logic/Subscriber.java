@@ -1,3 +1,5 @@
+package logic;
+
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.Logger;
@@ -5,6 +7,11 @@ import org.slf4j.LoggerFactory;
 
 import javax.jms.*;
 
+/**
+ *Временная подписка
+ * сообщенея доходят до юзера
+ * только при его подлючении
+ */
 public class Subscriber {
 
     private static final Logger LOGGER =
